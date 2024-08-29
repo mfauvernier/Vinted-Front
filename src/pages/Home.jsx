@@ -15,10 +15,16 @@ const Home = ({ data }) => {
             <Link key={offer._id} to={`/offer/${offer._id}`}>
               <div className="offer-block">
                 <div className="user">
-                  <img src={offer.owner.account.avatar.secure_url} alt="" />
+                  <img
+                    src={offer.owner.account.avatar.secure_url}
+                    alt={offer.owner.account.username}
+                  />
                   <p>{offer.owner.account.username}</p>
                 </div>
-                <img src={offer.product_image.secure_url} alt="" />
+                <img
+                  src={offer.product_image.secure_url}
+                  alt={offer.product_name}
+                />
                 <span>{offer.product_price} €</span>
                 <div>
                   {offer.product_details.map((details, index) => {
