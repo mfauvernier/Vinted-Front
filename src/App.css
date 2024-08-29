@@ -4,6 +4,15 @@
 /* =============================================================== */
 /* =============================================================== */
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
 .container {
   width: 1280px;
   margin: 0 auto;
@@ -52,7 +61,7 @@ header input {
 
 /* =============================================================== */
 /* =============================================================== */
-/* ===========================  MAIN  ============================ */
+/* ===========================  HOME  ============================ */
 /* =============================================================== */
 /* =============================================================== */
 
@@ -64,16 +73,15 @@ header input {
 
 .offers-block {
   display: flex;
-  border: blue 1px solid;
-  justify-content: space-between;
+  /* border: blue 1px solid; */
+  gap: 25px;
   flex-wrap: wrap;
-  margin: 50px auto;
+  margin: 35px auto;
 }
 
 .offer-block {
   display: flex;
   flex-direction: column;
-  border: red solid 1px;
   width: 235px;
 }
 
@@ -86,7 +94,6 @@ header input {
 .user {
   display: flex;
   align-items: center;
-  border: 1px solid green;
   height: 40px;
   gap: 20px;
 }
@@ -95,6 +102,175 @@ header input {
   border-radius: 50%;
   width: 20px;
   height: 20px;
-  border: 1px solid orange;
-  margin-left: 15px;
+  margin-left: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #999999;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.price {
+  font-size: 14px;
+  color: black;
+}
+
+.under-pic {
+  margin: 10px 0;
+  line-height: 15px;
+  padding-left: 10px;
+}
+
+/* =============================================================== */
+/* =============================================================== */
+/* ===========================  OFFER  ============================ */
+/* =============================================================== */
+/* =============================================================== */
+
+.offer-body {
+  background-color: #ebedee;
+}
+
+.offer-container {
+  width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+  gap: 30px;
+}
+
+.offer-pic img {
+  width: 450px;
+  height: 605px;
+  object-fit: cover;
+}
+
+.offer-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  width: 400px;
+  padding: 40px;
+}
+
+.price {
+  font-size: 24px;
+  line-height: 32px;
+  color: black;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 16px 0;
+}
+
+.list li {
+  display: flex;
+  padding: 3px 0;
+}
+
+.list p {
+  flex: 1;
+  font-size: 14px;
+}
+
+.list p:first-child {
+  color: #999999;
+}
+
+.offer-content p {
+  margin: 16px 0;
+}
+
+.user-offer {
+  display: flex;
+  align-items: center;
+}
+
+.user-offer img {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.offer-infos button {
+  color: #fff;
+  background: #09b1ba;
+  border: solid 1px #09b1ba;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+  height: 36px;
+  padding: 0 16px;
+  line-height: 36px;
+  margin-top: 32px;
+}
+
+/* =============================================================== */
+/* =============================================================== */
+/* ===========================  SIGNUP  ========================== */
+/* =============================================================== */
+/* =============================================================== */
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.signup-container h2 {
+  margin: 20px 0;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  width: 275px;
+  margin: auto;
+}
+
+.signup-form > input {
+  border: none;
+  border-bottom: 1px solid #fcced3;
+  height: 35px;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.checkbox-container {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.signup-form input[type="checkbox"] {
+  transform: scale(2);
+  margin-right: 20px;
+}
+
+.checkbox-container > p {
+  text-align: left;
+  color: #999;
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+.signup-form button {
+  background-color: #2cb1ba;
+  height: 45px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 20px;
 }

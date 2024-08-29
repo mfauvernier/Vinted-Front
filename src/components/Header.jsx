@@ -1,8 +1,11 @@
+import logo from "../img/vinted9809.jpg";
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <header>
       <div className="container">
-        <img src="src/img/vinted9809.jpg" alt="" />
+        <img src={logo} alt="logo-vinted" />
         <input
           type="search"
           name="site-search"
@@ -10,7 +13,9 @@ const Header = () => {
           id="site-search"
         />
         <div className="sign-up">
-          <button>S'inscrire</button>
+          <Link to="/signup">
+            <button>S'inscrire</button>
+          </Link>
           <button>Se connecter</button>
         </div>
         <button className="sell">Vends tes articles</button>

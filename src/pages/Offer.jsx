@@ -25,29 +25,46 @@ const Offer = () => {
 
   return (
     <div>
-      {" "}
       {isLoading ? (
         <p>Chargement ...</p>
       ) : (
-        <main>
-          <div>
-            <img src={data.product_image.secure_url} alt={data.product_name} />
-            <div>
-              <h2>{data.product_price} €</h2>
-              {data.product_details.map((detail, index) => {
-                // console.log(detail);
-                const keys = Object.keys(detail);
-                const key = keys[0];
-                return (
-                  <div key={index}>
-                    <p>{key}</p>
-                    <p>{detail[key]}</p>
-                  </div>
-                );
-              })}
+        <div className="offer-body">
+          <div className="offer-container">
+            <div className="offer-pic">
+              <img
+                src={data.product_image.secure_url}
+                alt={data.product_name}
+              />
+            </div>
+            <div className="offer-infos">
+              <div>
+                <p className="price">{data.product_price} €</p>
+                <ul className="list">
+                  {data.product_details.map((detail, index) => {
+                    // console.log(detail);
+                    const keys = Object.keys(detail);
+                    const key = keys[0];
+                    return (
+                      <li key={index}>
+                        <p>{key}</p>
+                        <p className="detail">{detail[key]}</p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+              <div className="offer-content">
+                <p>{data.product_name}</p>
+                <p>{data.product_description}</p>
+                <div className="user-offer">
+                  <img src={data.owner.account.avatar.secure_url} alt="" />
+                  <p>{data.owner.account.username}</p>
+                </div>
+              </div>
+              <button>Acheter</button>
             </div>
           </div>
-        </main>
+        </div>
       )}{" "}
     </div>
   );
