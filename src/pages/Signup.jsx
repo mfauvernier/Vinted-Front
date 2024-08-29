@@ -29,6 +29,8 @@ const Signup = () => {
     }
   };
 
+  // mederic // mederic@email.fr // password : abcde
+
   return (
     <div className="signup-container">
       <h2>S'inscrire</h2>
