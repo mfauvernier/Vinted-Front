@@ -1,43 +1,39 @@
 import "./App.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
+
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Cookies from "js-cookie";
+
+// Composants
+import Header from "./components/Header";
+
+// Pages
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
-import Header from "./components/Header";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
 function App() {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isConnected, setIsConnected] = useState(Cookies.get("token") || null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/v2/offers"
-      );
-      setData(response.data);
-      setIsLoading(false);
-    };
-    fetchData();
-  }, []);
   // console.log(data);
   return (
     <>
-      {isLoading ? (
-        <p>Chargement ...</p>
-      ) : (
-        <Router>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home data={data} />} />
-            <Route path="/offer/:id" element={<Offer data={data} />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </Router>
-      )}
+      <Router>
+        <Header isConnected={isConnected} setIsConnected={setIsConnected} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/offer/:id" element={<Offer />} />
+          <Route
+            path="/signup"
+            element={<Signup setIsConnected={setIsConnected} />}
+          />
+          <Route
+            path="/login"
+            element={<Login setIsConnected={setIsConnected} />}
+          />
+        </Routes>
+      </Router>
     </>
   );
 }

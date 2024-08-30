@@ -2,8 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setIsConnected }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const Login = () => {
       console.log(response.data);
       const token = response.data.token;
       Cookies.set("token", token);
+      setIsConnected(response.data.token);
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -49,6 +51,9 @@ const Login = () => {
         />
         <button>Se connecter</button>
       </form>
+      <Link to="/signup">
+        <p className="to-login">Pas encore de compte ? Inscris-toi !</p>
+      </Link>
     </div>
   );
 };

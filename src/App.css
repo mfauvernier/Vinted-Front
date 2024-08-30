@@ -59,6 +59,15 @@ header input {
   width: 120px;
 }
 
+.delete {
+  color: white;
+  background-color: #c2185b;
+  border: #c2185b solid 1px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 120px;
+}
+
 /* =============================================================== */
 /* =============================================================== */
 /* ===========================  HOME  ============================ */
@@ -273,4 +282,10 @@ a {
   color: #fff;
   font-size: 16px;
   margin-top: 20px;
+}
+
+.to-login {
+  color: #2cb1ba;
+  font-size: 12px;
+  margin-top: 30px;
 }
