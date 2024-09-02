@@ -2,7 +2,7 @@ import logo from "../img/vinted9809.jpg";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const Header = ({ isConnected, setIsConnected }) => {
+const Header = ({ token, setToken, search, setSearch }) => {
   return (
     <header>
       <div className="container">
@@ -10,17 +10,21 @@ const Header = ({ isConnected, setIsConnected }) => {
           <img src={logo} alt="logo-vinted" />
         </Link>
         <input
-          type="search"
+          type="text"
           name="site-search"
           placeholder="Recherche des articles"
           id="site-search"
+          value={search}
+          onChange={(elem) => {
+            setSearch(elem.target.value);
+          }}
         />
-        {isConnected ? (
+        {token ? (
           <div>
             <button
               className="delete"
               onClick={() => {
-                setIsConnected(false);
+                setToken(false);
                 Cookies.remove("token");
               }}
             >
@@ -37,8 +41,9 @@ const Header = ({ isConnected, setIsConnected }) => {
             </Link>
           </div>
         )}
-
-        <button className="sell">Vends tes articles</button>
+        <Link to={token ? "/publish" : "/login"}>
+          <button className="sell">Vends tes articles</button>
+        </Link>
       </div>
     </header>
   );

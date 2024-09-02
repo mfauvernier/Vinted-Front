@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 
-const Login = ({ setIsConnected }) => {
+const Login = ({ setToken }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
@@ -19,10 +19,10 @@ const Login = ({ setIsConnected }) => {
         "https://lereacteur-vinted-api.herokuapp.com/user/login",
         { email: email, password: password }
       );
-      console.log(response.data);
+      // console.log(response.data);
       const token = response.data.token;
       Cookies.set("token", token);
-      setIsConnected(response.data.token);
+      setToken(response.data.token);
       navigate("/");
     } catch (error) {
       console.log(error);

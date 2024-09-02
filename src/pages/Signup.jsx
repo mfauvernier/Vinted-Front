@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const Signup = ({ setIsConnected }) => {
+const Signup = ({ setToken }) => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -31,7 +31,7 @@ const Signup = ({ setIsConnected }) => {
       console.log(response.data);
       const token = response.data.token;
       Cookies.set("token", token);
-      setIsConnected(response.data.token);
+      setToken(response.data.token);
       navigate("/");
     } catch (error) {
       console.log(error);

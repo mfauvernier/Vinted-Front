@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import placeholder from "../img/placeholder.webp";
 
-const Home = () => {
+const Home = ({ search }) => {
   // console.log(data);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -10,13 +11,13 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/v2/offers"
+        "https://lereacteur-vinted-api.herokuapp.com/v2/offers?title=" + search
       );
       setData(response.data);
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [search]);
 
   return (
     <>
@@ -34,10 +35,18 @@ const Home = () => {
                 <Link key={offer._id} to={`/offer/${offer._id}`}>
                   <div className="offer-block">
                     <div className="user">
-                      <img
-                        src={offer.owner.account.avatar.secure_url}
-                        alt={offer.owner.account.username}
-                      />
+                      {offer.owner.account.avatar ? (
+                        <img
+                          src={offer.owner.account.avatar.secure_url}
+                          alt={offer.owner.account.username}
+                        />
+                      ) : (
+                        <img
+                          src={placeholder}
+                          alt={offer.owner.account.username}
+                        />
+                      )}
+
                       <p>{offer.owner.account.username}</p>
                     </div>
                     <img

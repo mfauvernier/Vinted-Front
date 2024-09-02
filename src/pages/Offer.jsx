@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import placeholder from "../img/placeholder.webp";
 
 const Offer = () => {
   const { id } = useParams();
@@ -57,7 +58,15 @@ const Offer = () => {
                 <p>{data.product_name}</p>
                 <p>{data.product_description}</p>
                 <div className="user-offer">
-                  <img src={data.owner.account.avatar.secure_url} alt="" />
+                  {data.owner.account.avatar ? (
+                    <img
+                      src={data.owner.account.avatar.secure_url}
+                      alt={data.owner.account.username}
+                    />
+                  ) : (
+                    <img src={placeholder} alt={data.owner.account.username} />
+                  )}
+
                   <p>{data.owner.account.username}</p>
                 </div>
               </div>

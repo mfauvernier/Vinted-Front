@@ -12,26 +12,28 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Publish from "./pages/Publish";
 
 function App() {
-  const [isConnected, setIsConnected] = useState(Cookies.get("token") || null);
+  const [token, setToken] = useState(Cookies.get("token") || null);
+  const [search, setSearch] = useState("");
 
   // console.log(data);
   return (
     <>
       <Router>
-        <Header isConnected={isConnected} setIsConnected={setIsConnected} />
+        <Header
+          token={token}
+          setToken={setToken}
+          search={search}
+          setSearch={setSearch}
+        />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home search={search} />} />
           <Route path="/offer/:id" element={<Offer />} />
-          <Route
-            path="/signup"
-            element={<Signup setIsConnected={setIsConnected} />}
-          />
-          <Route
-            path="/login"
-            element={<Login setIsConnected={setIsConnected} />}
-          />
+          <Route path="/signup" element={<Signup setToken={setToken} />} />
+          <Route path="/login" element={<Login setToken={setToken} />} />
+          <Route path="/publish" element={<Publish token={token} />} />
         </Routes>
       </Router>
     </>
