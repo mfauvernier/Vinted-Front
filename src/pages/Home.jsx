@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import hero from "../img/hero.jpg";
 import placeholder from "../img/placeholder.webp";
 
 const Home = ({ search }) => {
@@ -26,7 +27,7 @@ const Home = ({ search }) => {
       ) : (
         <main>
           <div className="img-container">
-            <img src="src/img/hero-24963eb2.jpg" alt="" className="hero" />
+            <img src={hero} alt="hero" className="hero" />
           </div>
           <div className="container offers-block">
             {data.offers.map((offer) => {
