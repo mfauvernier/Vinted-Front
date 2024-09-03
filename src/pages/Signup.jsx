@@ -15,9 +15,6 @@ const Signup = ({ setToken }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorMessage("");
-    if (!name || !email || !password) {
-      alert("Merci de bien vouloir remplir toutes les informations !");
-    }
     try {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ token, setToken, search, setSearch }) => {
+const Header = ({ token, setToken, search, setSearch, setPage }) => {
   const navigate = useNavigate();
 
   return (
@@ -41,7 +41,13 @@ const Header = ({ token, setToken, search, setSearch }) => {
               <button>S'inscrire</button>
             </Link>
             <Link to="/login">
-              <button>Se connecter</button>
+              <button
+                onClick={() => {
+                  setPage("/login");
+                }}
+              >
+                Se connecter
+              </button>
             </Link>
           </div>
         )}

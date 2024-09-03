@@ -1,15 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import placeholder from "../img/placeholder.webp";
-import { Link } from "react-router-dom";
 
-const Offer = ({ token }) => {
+const Offer = ({ token, setPage }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   // console.log(data);
-  console.log("token ===> ", token);
+  // console.log("token ===> ", token);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -71,12 +71,33 @@ const Offer = ({ token }) => {
                   <p>{data.owner.account.username}</p>
                 </div>
               </div>
-              <Link
+              {/* <Link
                 to={token ? "/payment" : "/login"}
                 state={{ title: data.product_name, price: data.product_price }}
+              > */}
+              <button
+                onClick={() => {
+                  if (token) {
+                    navigate("/payment", {
+                      state: {
+                        title: data.product_name,
+                        price: data.product_price,
+                      },
+                    });
+                  } else {
+                    navigate("/login", {
+                      state: {
+                        title: data.product_name,
+                        price: data.product_price,
+                      },
+                    });
+                    setPage("/payment");
+                  }
+                }}
               >
-                <button>Acheter</button>
-              </Link>
+                Acheter
+              </button>
+              {/* </Link> */}
             </div>
           </div>
         </div>

@@ -3,11 +3,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-const Login = ({ setToken }) => {
+const Login = ({ setToken, page, setPage }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -20,13 +22,27 @@ const Login = ({ setToken }) => {
         { email: email, password: password }
       );
       // console.log(response.data);
+
+      // console.log(title, price);
       const token = response.data.token;
       Cookies.set("token", token);
       setToken(response.data.token);
-      if (token) {
-        navigate("/publish");
-      } else {
+      if (page === "/payment") {
+        const { title, price } = location.state;
+        navigate("/payment", {
+          state: {
+            title: title,
+            price: price,
+          },
+        });
+        setPage("");
+        // navigate("/");
+      } else if (page === "/login") {
         navigate("/");
+        setPage("");
+      } else {
+        navigate("/publish");
+        setPage("");
       }
     } catch (error) {
       console.log(error);
