@@ -2,13 +2,14 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import placeholder from "../img/placeholder.webp";
+import { Link } from "react-router-dom";
 
-const Offer = () => {
+const Offer = ({ token }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // console.log(data);
-
+  console.log("token ===> ", token);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -70,11 +71,16 @@ const Offer = () => {
                   <p>{data.owner.account.username}</p>
                 </div>
               </div>
-              <button>Acheter</button>
+              <Link
+                to={token ? "/payment" : "/login"}
+                state={{ title: data.product_name, price: data.product_price }}
+              >
+                <button>Acheter</button>
+              </Link>
             </div>
           </div>
         </div>
-      )}{" "}
+      )}
     </div>
   );
 };

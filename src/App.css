@@ -295,6 +295,10 @@ a {
 /* =============================================================== */
 /* =============================================================== */
 
+.publish {
+  background-color: #ebedee;
+}
+
 .publish h2 {
   padding-top: 40px;
   margin-left: 20px;
@@ -307,11 +311,13 @@ a {
   justify-content: center;
   border: 1px grey solid;
   margin: 20px;
+  background-color: white;
 }
 
 .input-text {
   margin: 20px;
   border: 1px grey solid;
+  background-color: white;
 }
 
 .inside-text {
@@ -345,4 +351,21 @@ a {
   border-radius: 5px;
   padding: 12px;
   margin: 30px 0 50px 0;
+}
+
+/* =============================================================== */
+/* =============================================================== */
+/* ===========================  PAYMENT  ========================= */
+/* =============================================================== */
+/* =============================================================== */
+
+.payment {
+  background-color: #ebedee;
+}
+
+.payment-box {
+  background-color: white;
+  width: 600px;
+  margin: 0 auto;
+  padding: 30px 20px;
 }

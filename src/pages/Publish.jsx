@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Publish = ({ token }) => {
@@ -11,6 +12,8 @@ const Publish = ({ token }) => {
   const [condition, setCondition] = useState("");
   const [city, setCity] = useState("");
   const [price, setPrice] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,117 +38,125 @@ const Publish = ({ token }) => {
           },
         }
       );
-      console.log(response);
+      console.log(response.data);
+      navigate(`/offers/${response.data._id}`);
     } catch (error) {
       console.log(error);
     }
   };
 
-  return (
-    <div className="container publish">
-      <h2>Vends ton article</h2>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div className="input-img">
-            <input
-              type="file"
-              onChange={(event) => {
-                setPicture(event.target.files[0]);
-              }}
-            />
-          </div>
-          <div className="input-text">
-            <div className="inside-text">
-              <h3>Titre</h3>
+  return token ? (
+    <div className="publish">
+      <div className="container">
+        <h2>Vends ton article</h2>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <div className="input-img">
+              <label htmlFor="add-picture">Ajoute ta photo</label>
               <input
-                type="text"
+                id="add-picture"
+                type="file"
+                style={{ display: "none" }}
                 onChange={(event) => {
-                  setTitle(event.target.value);
+                  setPicture(event.target.files[0]);
                 }}
-                placeholder="ex : Chemise Octobre en Velours"
               />
             </div>
-            <div className="inside-text">
-              <h3>Décris ton article </h3>
-              <input
-                type="text"
-                onChange={(event) => {
-                  setDescription(event.target.value);
-                }}
-                placeholder="Décris ici ton article en détail"
-              />
+            <div className="input-text">
+              <div className="inside-text">
+                <h3>Titre</h3>
+                <input
+                  type="text"
+                  onChange={(event) => {
+                    setTitle(event.target.value);
+                  }}
+                  placeholder="ex : Chemise Octobre en Velours"
+                />
+              </div>
+              <div className="inside-text">
+                <h3>Décris ton article </h3>
+                <input
+                  type="text"
+                  onChange={(event) => {
+                    setDescription(event.target.value);
+                  }}
+                  placeholder="Décris ici ton article en détail"
+                />
+              </div>
             </div>
-          </div>
-          <div className="input-text">
-            <div className="inside-text">
-              <h3>Marque</h3>
-              <input
-                type="text"
-                onChange={(event) => {
-                  setBrand(event.target.value);
-                }}
-                placeholder="ex : Octobre Editions"
-              />
+            <div className="input-text">
+              <div className="inside-text">
+                <h3>Marque</h3>
+                <input
+                  type="text"
+                  onChange={(event) => {
+                    setBrand(event.target.value);
+                  }}
+                  placeholder="ex : Octobre Editions"
+                />
+              </div>
+              <div className="inside-text">
+                <h3>Taille</h3>
+                <input
+                  type="text"
+                  onChange={(event) => {
+                    setSize(event.target.value);
+                  }}
+                  placeholder="ex : S / M / L"
+                />
+              </div>
+              <div className="inside-text">
+                <h3>Couleur</h3>
+                <input
+                  type="text"
+                  onChange={(event) => {
+                    setColor(event.target.value);
+                  }}
+                  placeholder="ex : Vert"
+                />
+              </div>
+              <div className="inside-text">
+                <h3>Etat</h3>
+                <input
+                  type="text"
+                  onChange={(event) => {
+                    setCondition(event.target.value);
+                  }}
+                  placeholder="ex : Neuf "
+                />
+              </div>
+              <div className="inside-text">
+                <h3>Lieu</h3>
+                <input
+                  type="text"
+                  onChange={(event) => {
+                    setCity(event.target.value);
+                  }}
+                  placeholder="ex : Paris "
+                />
+              </div>
             </div>
-            <div className="inside-text">
-              <h3>Taille</h3>
-              <input
-                type="text"
-                onChange={(event) => {
-                  setSize(event.target.value);
-                }}
-                placeholder="ex : S / M / L"
-              />
+            <div className="input-text">
+              <div className="inside-text">
+                <h3>Prix</h3>
+                <input
+                  type="text"
+                  onChange={(event) => {
+                    setPrice(event.target.value);
+                  }}
+                  placeholder="0,00 €"
+                />
+              </div>
             </div>
-            <div className="inside-text">
-              <h3>Couleur</h3>
-              <input
-                type="text"
-                onChange={(event) => {
-                  setColor(event.target.value);
-                }}
-                placeholder="ex : Vert"
-              />
+            <div className="publish-button">
+              <button>Ajouter</button>
             </div>
-            <div className="inside-text">
-              <h3>Etat</h3>
-              <input
-                type="text"
-                onChange={(event) => {
-                  setCondition(event.target.value);
-                }}
-                placeholder="ex : Neuf "
-              />
-            </div>
-            <div className="inside-text">
-              <h3>Lieu</h3>
-              <input
-                type="text"
-                onChange={(event) => {
-                  setCity(event.target.value);
-                }}
-                placeholder="ex : Paris "
-              />
-            </div>
-          </div>
-          <div className="input-text">
-            <div className="inside-text">
-              <h3>Prix</h3>
-              <input
-                type="text"
-                onChange={(event) => {
-                  setPrice(event.target.value);
-                }}
-                placeholder="0,00 €"
-              />
-            </div>
-          </div>
-          <div className="publish-button">
-            <button>Ajouter</button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
+  ) : (
+    <Navigate to={"/login"} />
   );
 };
 
