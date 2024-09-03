@@ -6,7 +6,7 @@ import {
 import { useState } from "react";
 import axios from "axios";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ title, price }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState(null);
@@ -25,7 +25,11 @@ const CheckoutForm = () => {
       return;
     }
     const response = await axios.post(
-      "https://lereacteur-vinted-api.herokuapp.com/v2/payment"
+      "https://lereacteur-vinted-api.herokuapp.com/v2/payment",
+      {
+        title: title,
+        amount: price,
+      }
     );
 
     const clientSecret = response.data.client_secret;
@@ -33,7 +37,7 @@ const CheckoutForm = () => {
     const stripeResponse = await stripe.confirmPayment({
       elements,
       clientSecret,
-      confirmParams: { return_url: "" },
+      confirmParams: { return_url: "http://localhost:5173" },
       redirect: "if_required",
     });
     if (stripeResponse.error) {
@@ -46,11 +50,15 @@ const CheckoutForm = () => {
   };
 
   return completed ? (
-    <p>Paiement effectué !</p>
+    <p>Merci de votre achat !</p>
   ) : (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
-      <button type="submit" disabled={!stripe || !elements || isLoading}>
+      <button
+        className="payment-button"
+        type="submit"
+        disabled={!stripe || !elements || isLoading}
+      >
         Payer
       </button>
       {errorMessage && <div>{errorMessage}</div>}

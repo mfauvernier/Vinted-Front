@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ImCross } from "react-icons/im";
 
 const Publish = ({ token }) => {
   const [picture, setPicture] = useState(null);
@@ -52,15 +53,32 @@ const Publish = ({ token }) => {
         <div>
           <form onSubmit={handleSubmit}>
             <div className="input-img">
-              <label htmlFor="add-picture">Ajoute ta photo</label>
-              <input
-                id="add-picture"
-                type="file"
-                style={{ display: "none" }}
-                onChange={(event) => {
-                  setPicture(event.target.files[0]);
-                }}
-              />
+              {picture ? (
+                <div className="picture">
+                  <img src={URL.createObjectURL(picture)} alt="preview photo" />
+                  <ImCross
+                    className="cross"
+                    onClick={() => {
+                      setPicture(null);
+                    }}
+                  />
+                </div>
+              ) : (
+                <>
+                  <label htmlFor="add-picture" className="add-picture">
+                    <span className="sign">+</span>
+                    <span>Ajoute ta photo</span>
+                  </label>
+                  <input
+                    id="add-picture"
+                    type="file"
+                    style={{ display: "none" }}
+                    onChange={(event) => {
+                      setPicture(event.target.files[0]);
+                    }}
+                  />
+                </>
+              )}
             </div>
             <div className="input-text">
               <div className="inside-text">

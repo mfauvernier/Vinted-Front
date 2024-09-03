@@ -17,24 +17,38 @@ const Payment = () => {
     currency: "eur",
   };
 
+  let total = price + 1 + 2;
+
   return (
     <div className="payment">
       <div className="container payment-box">
-        <p>Résumé de la commande</p>
-        <p>Commande</p>
-        <p>{price} €</p>
-        <p>Frais protection acheteurs</p>
-        <p>1.00 €</p>
-        <p>Frais de port</p>
-        <p>2.00€</p>
-        <p>Total</p>
-        <p>... €</p>
-        <p>
-          Il ne vous reste plus qu'une étape pour vous offrir {title}. Vous
-          allez payer "TOTAL" (frais de protection et frais de port inclus).
+        <p className="title">Résumé de la commande</p>
+        <div className="first-block">
+          <div className="payment-line">
+            <p>Commande</p>
+            <p>{price} €</p>
+          </div>
+          <div className="payment-line">
+            <p>Frais protection acheteurs</p>
+            <p>1.00 €</p>
+          </div>
+          <div className="payment-line last-line">
+            <p>Frais de port</p>
+            <p>2.00 €</p>
+          </div>
+        </div>
+        <div className="payment-line total">
+          <p>Total</p>
+          <p>{total} €</p>
+        </div>
+        <p className="payment-final">
+          Il ne vous reste plus qu'une étape pour vous offrir{" "}
+          <span className="bold">{title}</span>. Vous allez payer{" "}
+          <span className="bold">{total}</span> € (frais de protection et frais
+          de port inclus).
         </p>
         <Elements stripe={stripePromise} options={options}>
-          <CheckoutForm />
+          <CheckoutForm title={title} price={price} />
         </Elements>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Header = ({ token, setToken, search, setSearch }) => {
   const navigate = useNavigate();
+
   return (
     <header>
       <div className="container">
@@ -28,7 +29,7 @@ const Header = ({ token, setToken, search, setSearch }) => {
               onClick={() => {
                 setToken(false);
                 Cookies.remove("token");
-                navigate("/login");
+                navigate("/");
               }}
             >
               Se deconnecter
