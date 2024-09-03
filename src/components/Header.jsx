@@ -1,8 +1,10 @@
 import logo from "../img/vinted9809.jpg";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ token, setToken, search, setSearch }) => {
+  const navigate = useNavigate();
   return (
     <header>
       <div className="container">
@@ -26,6 +28,7 @@ const Header = ({ token, setToken, search, setSearch }) => {
               onClick={() => {
                 setToken(false);
                 Cookies.remove("token");
+                navigate("/login");
               }}
             >
               Se deconnecter

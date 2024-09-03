@@ -23,7 +23,11 @@ const Login = ({ setToken }) => {
       const token = response.data.token;
       Cookies.set("token", token);
       setToken(response.data.token);
-      navigate("/");
+      if (token) {
+        navigate("/publish");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
     }
